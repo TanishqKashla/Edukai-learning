@@ -1,103 +1,132 @@
-import Image from "next/image";
+"use client";
+
+import { useState, FormEvent } from "react";
+
+type Note = {
+  subtopic: string;
+  notes: string;
+};
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [subject, setSubject] = useState("");
+  const [topic, setTopic] = useState("");
+  const [subtopics, setSubtopics] = useState("");
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    setNotes([]);
+
+    try {
+      const response = await fetch("/api/generate-notes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          subject,
+          topic,
+          subtopics: subtopics.split("\n").filter((s) => s.trim() !== ""),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to generate notes. Please try again.");
+      }
+
+      const data = await response.json();
+      setNotes(data.notes);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An unknown error occurred.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <main className="flex min-h-screen flex-col items-center p-12 bg-gray-50">
+      <div className="w-full max-w-3xl">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
+          AI-Powered Notes Generator
+        </h1>
+
+        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md mb-12">
+          <div className="mb-4">
+            <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">
+              Subject
+            </label>
+            <input
+              type="text"
+              id="subject"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="e.g., History"
+              required
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="topic" className="block text-gray-700 font-medium mb-2">
+              Topic
+            </label>
+            <input
+              type="text"
+              id="topic"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="e.g., The Renaissance"
+              required
+            />
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="subtopics" className="block text-gray-700 font-medium mb-2">
+              Subtopics (one per line)
+            </label>
+            <textarea
+              id="subtopics"
+              value={subtopics}
+              onChange={(e) => setSubtopics(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows={5}
+              placeholder="e.g., Art\nScience\nLiterature"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-md hover:bg-blue-700 transition duration-300 disabled:bg-gray-400"
+            disabled={isLoading}
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            {isLoading ? "Generating..." : "Generate Notes"}
+          </button>
+        </form>
+
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-8">
+            <p>{error}</p>
+          </div>
+        )}
+
+        {notes.length > 0 && (
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">Generated Notes</h2>
+            {notes.map((note, index) => (
+              <div key={index} className="mb-6">
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">{note.subtopic}</h3>
+                <p className="text-gray-600 whitespace-pre-wrap">{note.notes}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
   );
 }
