@@ -1,0 +1,95 @@
+[
+  {
+    "email": "alex.doe@example.com",
+    "notes": [
+      {
+        "subject": "Data Structures and Algorithms",
+        "topic": "Sorting Algorithms",
+        "generated_notes": [
+          {
+            "subtopic": "Bubble Sort",
+            "note": "A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted."
+          },
+          {
+            "subtopic": "Merge Sort",
+            "note": "A classic divide-and-conquer algorithm. It divides the array into two halves, recursively sorts them, and then merges the two sorted halves."
+          },
+          {
+            "subtopic": "Quick Sort",
+            "note": "A highly efficient sorting algorithm that uses a divide-and-conquer approach. It picks an element as a pivot and partitions the given array around the picked pivot."
+          }
+        ]
+      },
+      {
+        "subject": "Web Development",
+        "topic": "React Hooks",
+        "generated_notes": [
+          {
+            "subtopic": "useState",
+            "note": "A Hook that allows you to have state variables in functional components. You pass the initial state to this function and it returns a variable with the current state value and another function to update this value."
+          },
+          {
+            "subtopic": "useEffect",
+            "note": "A Hook that allows you to perform side effects in your components. Some examples of side effects are: fetching data, directly updating the DOM, and timers."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "email": "sara.jones@example.com",
+    "notes": [
+      {
+        "subject": "Operating Systems",
+        "topic": "Process Management",
+        "generated_notes": [
+          {
+            "subtopic": "Process Scheduling",
+            "note": "The activity of the process manager that handles the removal of the running process from the CPU and the selection of another process on the basis of a particular strategy."
+          },
+          {
+            "subtopic": "Deadlocks",
+            "note": "A situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process."
+          }
+        ]
+      },
+      {
+        "subject": "Database Systems",
+        "topic": "SQL vs NoSQL",
+        "generated_notes": [
+          {
+            "subtopic": "Data Structure",
+            "note": "SQL databases are relational, and data is stored in tables. NoSQL databases are non-relational and can be document, key-value, wide-column, or graph-based."
+          },
+          {
+            "subtopic": "Scalability",
+            "note": "SQL databases are vertically scalable, while NoSQL databases are horizontally scalable. This means SQL databases scale by increasing the power of the hardware, while NoSQL databases scale by adding more servers."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "email": "mike.smith@example.com",
+    "notes": [
+      {
+        "subject": "Computer Networks",
+        "topic": "OSI Model",
+        "generated_notes": [
+          {
+            "subtopic": "Physical Layer",
+            "note": "The lowest layer of the OSI Model. It is responsible for the actual physical connection between the devices. The physical layer contains information in the form of bits."
+          },
+          {
+            "subtopic": "Data Link Layer",
+            "note": "Responsible for the node-to-node delivery of the message. The main function of this layer is to make sure data transfer is error-free from one node to another, over the physical layer."
+          },
+          {
+            "subtopic": "Network Layer",
+            "note": "Works for the transmission of data from one host to the other located in different networks. It also takes care of packet routing i.e. selection of the shortest path to transmit the packet, from the number of routes available."
+          }
+        ]
+      }
+    ]
+  }
+]

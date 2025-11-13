@@ -1,25 +1,20 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
-type Note = {
-  subtopic: string;
-  notes: string;
-};
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [subject, setSubject] = useState("");
   const [topic, setTopic] = useState("");
   const [subtopics, setSubtopics] = useState("");
-  const [notes, setNotes] = useState<Note[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-    setNotes([]);
 
     try {
       const response = await fetch("/api/generate-notes", {
@@ -39,7 +34,8 @@ export default function Home() {
       }
 
       const data = await response.json();
-      setNotes(data.notes);
+      sessionStorage.setItem("generatedNotes", JSON.stringify(data.notes));
+      router.push("/notes");
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unknown error occurred.");
     } finally {
@@ -112,18 +108,6 @@ export default function Home() {
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-8">
             <p>{error}</p>
-          </div>
-        )}
-
-        {notes.length > 0 && (
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Generated Notes</h2>
-            {notes.map((note, index) => (
-              <div key={index} className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-700 mb-2">{note.subtopic}</h3>
-                <p className="text-gray-600 whitespace-pre-wrap">{note.notes}</p>
-              </div>
-            ))}
           </div>
         )}
       </div>
