@@ -1,35 +1,43 @@
 [
   {
     "email": "alex.doe@example.com",
+    "password": "password123",
     "notes": [
       {
         "subject": "Data Structures and Algorithms",
+        "subjectid": "DSA101",
         "topic": "Sorting Algorithms",
         "generated_notes": [
           {
             "subtopic": "Bubble Sort",
+            "subtopicid": "BS001",
             "note": "A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted."
           },
           {
             "subtopic": "Merge Sort",
+            "subtopicid": "MS002",
             "note": "A classic divide-and-conquer algorithm. It divides the array into two halves, recursively sorts them, and then merges the two sorted halves."
           },
           {
             "subtopic": "Quick Sort",
+            "subtopicid": "QS003",
             "note": "A highly efficient sorting algorithm that uses a divide-and-conquer approach. It picks an element as a pivot and partitions the given array around the picked pivot."
           }
         ]
       },
       {
         "subject": "Web Development",
+        "subjectid": "WD102",
         "topic": "React Hooks",
         "generated_notes": [
           {
             "subtopic": "useState",
+            "subtopicid": "US001",
             "note": "A Hook that allows you to have state variables in functional components. You pass the initial state to this function and it returns a variable with the current state value and another function to update this value."
           },
           {
             "subtopic": "useEffect",
+            "subtopicid": "UE002",
             "note": "A Hook that allows you to perform side effects in your components. Some examples of side effects are: fetching data, directly updating the DOM, and timers."
           }
         ]
@@ -38,31 +46,38 @@
   },
   {
     "email": "sara.jones@example.com",
+    "password": "password123",
     "notes": [
       {
         "subject": "Operating Systems",
+        "subjectid": "OS103",
         "topic": "Process Management",
         "generated_notes": [
           {
             "subtopic": "Process Scheduling",
+            "subtopicid": "PS001",
             "note": "The activity of the process manager that handles the removal of the running process from the CPU and the selection of another process on the basis of a particular strategy."
           },
           {
             "subtopic": "Deadlocks",
+            "subtopicid": "DL002",
             "note": "A situation where a set of processes are blocked because each process is holding a resource and waiting for another resource acquired by some other process."
           }
         ]
       },
       {
         "subject": "Database Systems",
+        "subjectid": "DB104",
         "topic": "SQL vs NoSQL",
         "generated_notes": [
           {
             "subtopic": "Data Structure",
+            "subtopicid": "DS001",
             "note": "SQL databases are relational, and data is stored in tables. NoSQL databases are non-relational and can be document, key-value, wide-column, or graph-based."
           },
           {
             "subtopic": "Scalability",
+            "subtopicid": "SC002",
             "note": "SQL databases are vertically scalable, while NoSQL databases are horizontally scalable. This means SQL databases scale by increasing the power of the hardware, while NoSQL databases scale by adding more servers."
           }
         ]
@@ -71,21 +86,26 @@
   },
   {
     "email": "mike.smith@example.com",
+    "password": "password123",
     "notes": [
       {
         "subject": "Computer Networks",
+        "subjectid": "CN105",
         "topic": "OSI Model",
         "generated_notes": [
           {
             "subtopic": "Physical Layer",
+            "subtopicid": "PL001",
             "note": "The lowest layer of the OSI Model. It is responsible for the actual physical connection between the devices. The physical layer contains information in the form of bits."
           },
           {
             "subtopic": "Data Link Layer",
+            "subtopicid": "DL002",
             "note": "Responsible for the node-to-node delivery of the message. The main function of this layer is to make sure data transfer is error-free from one node to another, over the physical layer."
           },
           {
             "subtopic": "Network Layer",
+            "subtopicid": "NL003",
             "note": "Works for the transmission of data from one host to the other located in different networks. It also takes care of packet routing i.e. selection of the shortest path to transmit the packet, from the number of routes available."
           }
         ]

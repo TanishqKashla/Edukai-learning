@@ -35,7 +35,7 @@ export default function NotesPage() {
         <div className="text-center">
           <p className="text-gray-600 mb-4">No notes found.</p>
           <button
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/new-subject")}
             className="bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"
           >
             Generate New Notes
@@ -51,7 +51,7 @@ export default function NotesPage() {
         <div className="flex justify-between items-center mb-8">
             <h1 className="text-4xl font-bold text-gray-800">Generated Notes</h1>
             <button
-                onClick={() => router.push("/")}
+                onClick={() => router.push("/new-subject")}
                 className="bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"
             >
                 Generate New Notes
