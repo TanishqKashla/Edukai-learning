@@ -1,4 +1,5 @@
 import { BookOpen } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -7,10 +8,12 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <BookOpen className="h-6 w-6 text-primary" />
-              <span className="text-lg font-bold bg-gradient-hero bg-clip-text text-transparent">
-                EduKai
-              </span>
+              <Link href="/" className="flex items-center gap-2">
+                <BookOpen className="h-6 w-6 text-primary" />
+                <span className="text-lg font-bold bg-gradient-hero bg-clip-text ">
+                  EduKai
+                </span>
+              </Link>
             </div>
             <p className="text-sm text-muted-foreground">
               Transform your syllabus into perfect study notes with the power of AI.

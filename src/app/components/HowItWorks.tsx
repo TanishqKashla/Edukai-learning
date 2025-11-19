@@ -25,7 +25,7 @@ const HowItWorks = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
-            How It <span className="bg-gradient-hero bg-clip-text text-transparent">Works</span>
+            How It <span className="bg-gradient-hero bg-clip-text">Works</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Three simple steps to transform your syllabus into perfect study notes
@@ -35,7 +35,7 @@ const HowItWorks = () => {
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {steps.map((step, index) => (
             <div key={index} className="relative">
-              <Card className="relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-soft group">
+              <Card className="relative overflow-hidden border-2 hover:border-white/50 transition-all duration-300 hover:shadow-soft group hover:bg-white hover:text-black">
                 <CardContent className="p-8 space-y-4">
                   <div className="relative">
                     <div className="absolute -top-2 -left-2 w-12 h-12 bg-gradient-hero opacity-20 rounded-full blur-xl group-hover:opacity-40 transition-opacity" />
@@ -50,7 +50,7 @@ const HowItWorks = () => {
                   </p>
                 </CardContent>
               </Card>
-              
+
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
                   <div className="w-8 h-0.5 bg-gradient-to-r from-primary to-primary-glow" />

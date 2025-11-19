@@ -12,7 +12,7 @@ const CTA = () => {
           <div className="relative">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
               Ready to Transform Your{" "}
-              <span className="bg-gradient-hero bg-clip-text text-transparent">
+              <span className="bg-gradient-hero bg-clip-text ">
                 Study Experience?
               </span>
             </h2>
@@ -23,7 +23,7 @@ const CTA = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/new-subject">
-                <Button variant="hero" size="lg" className="group">
+                <Button variant="hero" size="lg" className="group hover:bg-white hover:text-black border border-white">
                     Get Started
                     <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Button>

@@ -40,7 +40,7 @@ const Features = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
-            Powerful <span className="bg-gradient-hero bg-clip-text text-transparent">Features</span>
+            Powerful <span className="bg-gradient-hero bg-clip-text">Features</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Everything you need to create perfect study notes from any syllabus
@@ -51,7 +51,7 @@ const Features = () => {
           {features.map((feature, index) => (
             <Card 
               key={index} 
-              className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-soft group"
+              className="border-2 hover:border-white/50 transition-all duration-300 hover:shadow-soft group hover:bg-white hover:text-black"
             >
               <CardContent className="p-6 space-y-4">
                 <div className="relative w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-gradient-hero group-hover:shadow-soft transition-all duration-300">
